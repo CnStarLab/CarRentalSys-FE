@@ -14,7 +14,12 @@ export default function Search() {
         size="large"
       />
       <RangePicker size="large" />
-      <Button icon={<SearchOutlined />} type="primary" size="large">
+      <Button
+        icon={<SearchOutlined />}
+        type="primary"
+        size="large"
+        href="/browser"
+      >
         Search
       </Button>
     </div>

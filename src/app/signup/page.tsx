@@ -7,7 +7,6 @@ export default function page() {
   type FieldType = {
     username?: string;
     password?: string;
-    remember?: string;
   };
 
   const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
@@ -23,7 +22,7 @@ export default function page() {
     <Container>
       <div className="flex w-full justify-center mt-16">
         <Card className=" shadow-md w-[560px]">
-          <div className="text-5xl">Login</div>
+          <div className="text-5xl">Sign Up</div>
           <div className="pb-8 pt-2">Монголын анхны машин түрээсийн систем</div>
           <Form
             layout="vertical"
@@ -52,10 +51,6 @@ export default function page() {
               <Input.Password size="large" />
             </Form.Item>
 
-            <Form.Item<FieldType> name="remember" valuePropName="checked">
-              <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-
             <Form.Item>
               <Button
                 type="primary"
@@ -64,17 +59,17 @@ export default function page() {
                 size="large"
                 href="/"
               >
-                Login
+                Sign Up
               </Button>
             </Form.Item>
           </Form>
           <Divider />
           <div className="flex flex-nowrap gap-4">
             <Button size="large" block>
-              Login with E-Mongolia
+              Signup with E-Mongolia
             </Button>
-            <Button size="large" block href="/signup">
-              Sign Up
+            <Button size="large" block href="/login">
+              Login
             </Button>
           </div>
         </Card>
