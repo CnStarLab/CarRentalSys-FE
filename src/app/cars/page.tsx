@@ -18,7 +18,7 @@ export default function Browser() {
             <CarHorizontal />
           </div>
           <div className="text-2xl pb-8">Энгийн Зарууд</div>
-          <div className="grid grid-cols-4 gap-2">
+          <div className="grid grid-cols-3 gap-2">
             <CarCard />
             <CarCard />
             <CarCard />

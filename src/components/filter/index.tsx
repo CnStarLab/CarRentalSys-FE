@@ -22,14 +22,9 @@ const options = [
 
 export default function Filter() {
   return (
-    <Affix offsetTop={140}>
+    <Affix offsetTop={120} className="w-96">
       <Card extra={<Button>Clear</Button>} title="Filter">
-        <Form
-          layout="vertical"
-          name="validate_other"
-          onFinish={onFinish}
-          className="w-[300px]"
-        >
+        <Form layout="vertical" name="validate_other" onFinish={onFinish}>
           <Form.Item
             name="switch"
             valuePropName="checked"

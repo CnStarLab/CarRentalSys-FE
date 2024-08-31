@@ -7,7 +7,7 @@ export default function Container({
 }>) {
   return (
     <div className="flex justify-center h-full">
-      <div className="max-w-[1560px] w-full py-10">{children}</div>
+      <div className="max-w-[1200px] w-full p-5 ">{children}</div>
     </div>
   );
 }

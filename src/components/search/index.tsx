@@ -24,7 +24,7 @@ export default function Search({ search }: { search?: boolean }) {
           icon={<SearchOutlined />}
           type="primary"
           size="large"
-          href="/browser"
+          href="/cars"
         >
           Search
         </Button>

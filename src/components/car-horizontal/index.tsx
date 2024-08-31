@@ -6,19 +6,24 @@ import {
 } from "@ant-design/icons";
 import { Carousel, Divider } from "antd";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function CarHorizontal() {
+  const router = useRouter();
   return (
     <div>
-      <div className="flex justify-between w-full hover:shadow-md rounded p-2 cursor-pointer">
+      <div
+        className="flex justify-between w-full hover:shadow-md rounded p-2 cursor-pointer"
+        onClick={() => router.push("/cars/id")}
+      >
         <div className="flex gap-5">
           <Carousel infinite={false} arrows>
             <Image
               src="https://cdn.pixabay.com/photo/2023/02/07/17/49/supercar-7774683_640.jpg"
               alt="car"
-              width={320}
-              height={200}
+              width={180}
+              height={150}
               className="rounded-lg"
             />
           </Carousel>
