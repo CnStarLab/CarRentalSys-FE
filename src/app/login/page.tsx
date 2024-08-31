@@ -21,7 +21,7 @@ export default function page() {
   };
   return (
     <Container>
-      <div className="flex w-full justify-center mt-16">
+      <div className="flex w-full justify-center">
         <Card className=" shadow-md w-[560px]">
           <div className="text-5xl">Login</div>
           <div className="pb-8 pt-2">Монголын анхны машин түрээсийн систем</div>

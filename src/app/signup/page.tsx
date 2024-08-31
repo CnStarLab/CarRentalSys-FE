@@ -1,6 +1,6 @@
 "use client";
 import Container from "@/components/Container";
-import { Button, Card, Checkbox, Divider, Form, FormProps, Input } from "antd";
+import { Button, Card, Divider, Form, FormProps, Input } from "antd";
 import React from "react";
 
 export default function page() {
@@ -20,7 +20,7 @@ export default function page() {
   };
   return (
     <Container>
-      <div className="flex w-full justify-center mt-16">
+      <div className="flex w-full justify-center">
         <Card className=" shadow-md w-[560px]">
           <div className="text-5xl">Sign Up</div>
           <div className="pb-8 pt-2">Монголын анхны машин түрээсийн систем</div>
