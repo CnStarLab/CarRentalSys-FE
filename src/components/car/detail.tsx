@@ -18,8 +18,8 @@ export default function CarDetail() {
       <Divider />
       <div className="text-2xl pb-4">Үзүүлэлт</div>
       <div className="grid grid-cols-2 gap-3">
-        {data.map((e) => (
-          <div>
+        {data.map((e, key) => (
+          <div key={key}>
             <div>{e.label}</div>
             <div>{e.value}</div>
           </div>
