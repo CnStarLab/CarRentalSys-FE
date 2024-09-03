@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch } from "antd";
-import NotificationItem from "../../../components/notification/NotificationItem";
+import NotificationItem from "@/components/notification/NotificationItem";
 
 // static data needs to be replaced with dynamic data
 const notifications = [
