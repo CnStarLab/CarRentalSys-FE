@@ -12,125 +12,29 @@ interface NotificationItemProps {
   imageUrl: string;
 }
 
-const NotificationItem = ({
-  name,
-  requestTime,
-  carModel,
-  dateRange,
-  imageUrl,
-}: NotificationItemProps) => {
-  const notificationItemStyle: React.CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    padding: "10px",
-    marginBottom: "10px",
-  };
-
-  const notificationHeaderStyle: React.CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    marginBottom: "10px",
-  };
-
-  const userInitialStyle: React.CSSProperties = {
-    backgroundColor: "#007bff",
-    color: "#fff",
-    borderRadius: "50%",
-    padding: "10px",
-    marginRight: "10px",
-    flexShrink: 0,
-    height: "40px", // 确保与 userInfoStyle 高度相同
-    width: "40px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: "24px",
-  };
-
-  const userInfoStyle: React.CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    flexGrow: 1,
-  };
-
-  const userNameStyle: React.CSSProperties = {
-    fontWeight: "bold",
-    marginBottom: "5px",
-  };
-
-  const detailsStyle: React.CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-  };
-
-  const carModelStyle: React.CSSProperties = {
-    marginLeft: "10px",
-  };
-
-  const notificationBodyStyle: React.CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    border: "0.5px solid #ccc",
-    marginTop: "20px",
-    marginBottom: "20px",
-    height: '100%',
-    padding:"10px 5px 10px 5px"
-  };
-
-  const carImageStyle: React.CSSProperties = {
-    width: "100px",
-    height: "auto",
-    marginRight: "20px",
-  };
-
-  const dateRangeStyle: React.CSSProperties = {
-    flex: 1,
-    marginRight: "20px",
-  };
-
-  const buttonStyle: React.CSSProperties = {
-    marginRight: "10px",
-    border: "none",
-    cursor: "pointer",
-    height:"40px",
-    width:"120px"
-  };
-
-  const approveButtonStyle: React.CSSProperties = {
-    ...buttonStyle,
-    backgroundColor: "rgb(230,240,244)",
-    color: "black",
-  };
-
-  const declineButtonStyle: React.CSSProperties = {
-    ...buttonStyle,
-    backgroundColor: "rgb(34,41,54)",
-    color: "white",
-  };
-
+export default function NotificationItem({ name, requestTime, carModel, dateRange, imageUrl }: NotificationItemProps) {
   return (
-    <div style={notificationItemStyle}>
-      <div style={notificationHeaderStyle}>
-        <span style={userInitialStyle}>{name.charAt(0)}</span>
-        <div style={userInfoStyle}>
-          <span style={userNameStyle}>{name}</span>
-          <div style={detailsStyle}>
+    <div className="flex flex-col p-2.5 mb-2.5">
+      <div className="flex items-center mb-2.5">
+        <span className="bg-blue-600 text-white rounded-full p-2.5 mr-2.5 flex-shrink-0 h-10 w-10 flex items-center justify-center text-2xl">
+          {name.charAt(0)}
+        </span>
+        <div className="flex flex-col justify-center flex-grow">
+          <span className="font-bold mb-1.25">{name}</span>
+          <div className="flex items-center">
             <span>{requestTime}</span>
-            <span style={carModelStyle}>{carModel}</span>
+            <span className="ml-2.5">{carModel}</span>
           </div>
         </div>
       </div>
-      <div style={notificationBodyStyle}>
-        <div style={dateRangeStyle}>{dateRange}</div>
-        <Image src={imageUrl} alt={carModel} style={carImageStyle} width={100} height={100} />
+      <div className="flex items-center border border-gray-300 w-full mt-5 mb-5 p-2.5">
+        <div className="flex-1 mr-5">{dateRange}</div>
+        <Image src={imageUrl} alt={carModel} className="w-25 h-auto mr-5" width={100} height={100} />
       </div>
       <div>
-        <Button style={approveButtonStyle}>Татгалзах</Button>
-        <Button style={declineButtonStyle}>Зөвшөөрөх</Button>
+        <Button className="mr-2.5 border-none cursor-pointer h-10 w-30 bg-gray-200 text-black">Татгалзах</Button>
+        <Button className="border-none cursor-pointer h-10 w-30 bg-gray-800 text-white">Зөвшөөрөх</Button>
       </div>
     </div>
   );
-};
-
-export default NotificationItem;
+}
