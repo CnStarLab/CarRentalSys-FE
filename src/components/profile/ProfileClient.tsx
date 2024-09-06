@@ -6,6 +6,7 @@ import pencil from "#/pen.png";
 import phone from "#/telephone.png";
 import mail from "#/mail.png";
 import Eicon from "#/eicon.png";
+import { useRouter } from "next/navigation";
 
 interface ProfileClientProps {
   firstName: string;
@@ -32,6 +33,8 @@ export default function ProfileClient({
   const [isVerified, setIsVerified] = useState<boolean>(initialIsVerified);
   const [password, setPassword] = useState<string>(initialPassword);
 
+  const router = useRouter();
+
   // Handler functions
   const handlePersonalInfoChange = () => {
     // Logic to change personal information
@@ -44,6 +47,7 @@ export default function ProfileClient({
   const handleVerifyPhone = () => {
     // Logic to verify phone number
     setIsVerified(true);
+    router.push(`/phoneNumberVerify?phoneNumber=${phoneNumber}`);
   };
 
   const handleVerifyAccount = () => {

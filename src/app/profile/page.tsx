@@ -1,4 +1,5 @@
 import ProfileClient from '@/components/profile/ProfileClient';
+import React from "react";
 import Warning from '#/warning.png';
 import Image from 'next/image'; // 如果你使用的是 Next.js，建议使用 Image 组件来优化图片加载
 
