@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
+import backicon from "#/back.png";
+import Image from "next/image";
 
 export default function VerificationCodeInput() {
   // 设置初始计时为10分钟（600秒）
@@ -9,6 +11,7 @@ export default function VerificationCodeInput() {
   const inputRefs = useRef<HTMLInputElement[]>([]);
   const searchParams = useSearchParams();
   const phoneNumber = searchParams.get("phoneNumber");
+  const router = useRouter();
 
   useEffect(() => {
     // 倒计时逻辑
@@ -38,7 +41,7 @@ export default function VerificationCodeInput() {
       const newCode = code.join(""); // Join the code array into a single string
       alert(newCode);
     };
-  
+
     // 当 code 变化时，检查是否已经输入了4个字符
     if (code.every((char) => char !== "")) {
       onComplete();
@@ -88,17 +91,31 @@ export default function VerificationCodeInput() {
     }
   };
 
+  const handleBackPage = () => {
+    router.back();
+  };
+
   return (
-    <div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
-      <div className="text-2xl mb-4 font-semibold">
-        Утасны дугаар баталгаажуулах
+    <div className="max-w-lg mx-auto p-4 bg-white rounded-lg shadow-md">
+      <div className="flex items-center space-x-4">
+        <Image
+          src={backicon}
+          alt="Back Icon"
+          className="w-6 h-6 mr-4"
+          width={24}
+          height={24}
+          onClick={handleBackPage}
+        />
+        <div className="flex flex-col">
+          <div className="text-2xl mb-4 font-semibold">
+            Утасны дугаар баталгаажуулах
+          </div>
+          <div className="text-sm text-gray-600 mb-2">
+            Таны +{phoneNumber} дугаарт илгээгдсэн 4 оронтой кодыг оруулна уу.
+          </div>
+        </div>
       </div>
-      <div className="text-sm text-gray-600 mb-2">
-        Таны +{phoneNumber} дугаарт илгээгдсэн 4 оронтой кодыг оруулна уу.
-      </div>
-      <div className="text-center text-2xl font-bold my-6">
-        {formatTime()}
-      </div>
+      <div className="text-center text-2xl font-bold my-6">{formatTime()}</div>
       <div className="flex justify-center gap-2">
         {code.map((num, index) => (
           <input
