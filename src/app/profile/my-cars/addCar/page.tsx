@@ -1,5 +1,10 @@
 import React from "react";
+import AddCarClient from "@/components/profile/my-car/addCar/addCarClient";
 
-export default function addCar() {
-  return <div>addCar</div>;
+export default function AddCar() {
+  return (
+    <div>
+      <AddCarClient />
+    </div>
+  );
 }

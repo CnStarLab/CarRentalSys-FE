@@ -2,6 +2,7 @@ import React from "react";
 import cube from "#/cube.png";
 import Image from "next/image";
 import AddCarButton from "@/components/profile/my-car/addCarButton";
+
 export default function MyCars() {
   return (
     <div className="p-5 rounded-lg mx-auto w-[1000px]">
