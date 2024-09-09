@@ -23,7 +23,7 @@ const notifications = [
 export default function Notifications() {
   return (
     <div className="p-5 rounded-lg mx-auto w-[1000px]">
-      <h1 className="text-2xl font-bold mb-5">Мэдэгдэл</h1>
+      <h1 className="text-4xl font-bold mb-5">Мэдэгдэл</h1>
       <div className="flex flex-col items-start mb-5 pb-2.5 border-b border-gray-300 w-full">
         <div className="flex items-center mb-2.5">
           <Switch />
