@@ -8,17 +8,15 @@ import Eicon from "#/eicon.png";
 import backicon from "#/back.png";
 import infoicon from "#/info.png";
 import { useRouter } from "next/navigation";
-import type { RadioChangeEvent } from "antd";
-import { Radio, Select, Space } from "antd";
+import type { RadioChangeEvent, UploadProps } from "antd";
+import { Radio, Select, Space, Switch, Button, message, Upload } from "antd";
+import { UploadOutlined } from '@ant-design/icons';
 import SelectField from "./selectField";
 
 export default function AddCarClient() {
   // State management using hooks
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [phoneNumber, setPhoneNumber] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [isVerified, setIsVerified] = useState<boolean>(false);
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [rentPrice, setRentPrice] = useState<string>("1 өдрийн үнэ ғ");
   const [radioValue, setRadioValue] = useState(1);
 
@@ -41,27 +39,34 @@ export default function AddCarClient() {
     setSelectedValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handler functions
-  const handlePersonalInfoChange = () => {
-    // Logic to change personal information
+  const props: UploadProps = {
+    name: 'file',
+    action: 'https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload',
+    headers: {
+      authorization: 'authorization-text',
+    },
+    onChange(info) {
+      if (info.file.status !== 'uploading') {
+        console.log(info.file, info.fileList);
+      }
+      if (info.file.status === 'done') {
+        message.success(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === 'error') {
+        message.error(`${info.file.name} file upload failed.`);
+      }
+    },
   };
 
-  const handleContactInfoChange = () => {
-    // Logic to change contact information
+  const handleSubmit = () => {
+    // Logic to submit all information
   };
 
-  const handleVerifyPhone = () => {
-    // Logic to verify phone number
-    setIsVerified(true);
-    router.push(`/phoneNumberVerify?phoneNumber=${phoneNumber}`);
-  };
-
-  const handleVerifyAccount = () => {
-    // Logic to verify account
-  };
-
-  const handlePasswordChange = () => {
-    // Logic to change password
+  const handleClear = () => {
+    setTitle("");
+    setDescription("");
+    setRentPrice("");
+    setRadioValue(1);
+    setSelectedValues({});
   };
 
   // 定义选项数据
@@ -195,6 +200,29 @@ export default function AddCarClient() {
       { value: "Бор", label: "Бор" },
       { value: "Сувдан цагаан", label: "Сувдан цагаан" },
     ],
+    region: [
+      { value: "Архангай", label: "Архангай" },
+      { value: "Баян-Өлгий", label: "Баян-Өлгий" },
+      { value: "Баянхонгор", label: "Баянхонгор" },
+      { value: "Булган", label: "Булган" },
+      { value: "Говь-Алтай", label: "Говь-Алтай" },
+      { value: "Говьсумбэр", label: "Говьсумбэр" },
+      { value: "Дархан", label: "Дархан" },
+      { value: "Дорноговь", label: "Дорноговь" },
+      { value: "Дорнод", label: "Дорнод" },
+      { value: "Дундговь", label: "Дундговь" },
+      { value: "Завхан", label: "Завхан" },
+      { value: "Орхон", label: "Орхон" },
+      { value: "Сэлэнгэ", label: "Сэлэнгэ" },
+      { value: "Сүхбаатар", label: "Сүхбаатар" },
+      { value: "Төв", label: "Төв" },
+      { value: "Увс", label: "Увс" },
+      { value: "Улаанбаатар", label: "Улаанбаатар" },
+      { value: "Ховд", label: "Ховд" },
+      { value: "Хэнтий", label: "Хэнтий" },
+      { value: "Хевсгел", label: "Хевсгел" },
+      { value: "Оверхангай", label: "Оверхангай" },
+    ],
   };
 
   return (
@@ -226,14 +254,14 @@ export default function AddCarClient() {
         <div className="text-2xl mb-4 font-semibold">Еренхий мэдээлэл</div>
         <input
           type="text"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           placeholder="Гарчиг"
           className="w-full h-10 border rounded bg-custom-blue2 mb-4 pl-2"
         />
         <textarea
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           placeholder="Машины тухай тайлбар бичих."
           className="w-full h-32 border rounded bg-custom-blue2 pl-2"
         />
@@ -349,8 +377,39 @@ export default function AddCarClient() {
           className="w-full p-2 mb-4 border rounded bg-custom-blue2"
         />
         <p className="text-sm text-gray-600 mb-2">
-        Ta машинаа нәг өдер хэдээр түрээслүүлтэх вэ? үнийг дарава нь верчилж болно
+          Ta машинаа нәг өдер хэдээр түрээслүүлтэх вэ? үнийг дарава нь верчилж болно
         </p>
+      </div>
+
+      <div className="mb-6 border-b border-gray-300 pb-6">
+        <h3 className="text-2xl mb-4 font-semibold">Байршил</h3>
+        <SelectField
+          placeholder="Аймаг, нийслэл"
+          options={selectOptions.region}
+          onChange={handleSelectChange("region")}
+        />
+        <div className="flex items-center mb-2.5">
+          <Switch />
+          <span className="ml-2.5">Түрээслэгч хусвэл хүргэж өгех боломжтой</span>
+        </div>
+      </div>
+
+      <div className="mb-6 border-b border-gray-300 pb-6">
+        <h3 className="text-2xl mb-4 font-semibold">3ypar</h3>
+        <SelectField
+          placeholder="Аймаг, нийслэл"
+          options={selectOptions.region}
+          onChange={handleSelectChange("region")}
+        />
+        <Upload {...props}>
+          <Button icon={<UploadOutlined />}>Click to Upload</Button>
+        </Upload>
+        <p className="text-sm text-gray-600 mb-2 mt-4">
+          Машины олон талаас дарсан нягтаршилтай зургуудыг оруулаарай. 
+          Хамгийн ихдэз 10 зураг оруулах боломжтой.
+        </p>
+        <button className="border text-black w-[100px] h-10 rounded-md mt-4 mr-4 ml-96" onClick={handleClear}>Буцах</button>
+        <button className="bg-black text-white w-[100px] h-10 rounded-md mt-4" onClick={handleSubmit}>Хадгалах</button>
       </div>
     </div>
   );
